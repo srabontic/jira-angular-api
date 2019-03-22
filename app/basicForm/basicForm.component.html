@@ -1,0 +1,88 @@
+<div class="container">
+  <div *ngIf="!submitted">
+    <h1>Ask Now Change Request Form</h1>
+    <form #AskNowForm="ngForm" (ngSubmit)="onSubmit(AskNowForm.value)">
+      <div class="form-group">
+        <label for="opened_by">Opened By</label>
+        <input type="text" class="form-control" name="opened_by" ngControl="opened_by" ngModel #opened_by="ngModel" required>
+        <div class="alert alert-danger" [hidden]="opened_by.valid || opened_by.pristine">Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="requested_by">Requested By</label>
+        <input type="text" class="form-control" name="requested_by" ngControl="requested_by" ngModel #requested_by="ngModel" required>
+        <div class="alert alert-danger" [hidden]="requested_by.valid || requested_by.pristine">Requested By is required</div>
+      </div>
+      <div class="form-group">
+        <label for="cmdb_ci">Server Name</label>
+        <input type="text" class="form-control" name="cmdb_ci" ngControl="cmdb_ci" ngModel #cmdb_ci="ngModel" required>
+        <div class="alert alert-danger" [hidden]="cmdb_ci.valid || cmdb_ci.pristine">Server Name is required</div>
+      </div>
+     
+      <div class="form-group">
+        <label for="risk">Risk</label>
+        <select class="form-control" name="risk" ngControl="risk" ngModel #risk="ngModel" required>
+          <option *ngFor="let p of risks" [value]="p">{{ p }}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="risk.valid || risk.pristine">Risk level is required</div>
+      </div>
+      <div class="form-group">
+        <label for="assigned_to">Assigned To</label>
+        <input type="text" class="form-control" name="assigned_to" ngControl="assigned_to" ngModel #assigned_to="ngModel" required>
+        <div class="alert alert-danger" [hidden]="assigned_to.valid || assigned_to.pristine">Assigned To is required</div>
+      </div>
+      <div class="form-group">
+        <label for="short_description">Short Description</label>
+        <input type="text" class="form-control" name="short_description" ngControl="short_description" ngModel #short_description="ngModel" required>
+        <div class="alert alert-danger" [hidden]="short_description.valid || short_description.pristine">Alter Ego is required</div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" name="description" ngControl="description" ngModel #description="ngModel" required>
+        <div class="alert alert-danger" [hidden]="description.valid || description.pristine">Alter Ego is required</div>
+      </div>
+      <div class="form-group">
+        <label for="justification">Justification</label>
+        <input type="text" class="form-control" name="justification" ngControl="justification" ngModel #justification="ngModel" required>
+        <div class="alert alert-danger" [hidden]="justification.valid || justification.pristine">Justification is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="implementation_plan">Implementaion Plan</label>
+        <input type="text" class="form-control" name="implementation_plan" ngControl="implementation_plan" ngModel #implementation_plan="ngModel" required>
+        <div class="alert alert-danger" [hidden]="implementation_plan.valid || implementation_plan.pristine">Implementaion Plan is required</div>
+      </div>
+      <div class="form-group">
+        <label for="risk_impact_analysis">Risk Impact Analysis</label>
+        <input type="text" class="form-control" name="risk_impact_analysis" ngControl="risk_impact_analysis" ngModel #risk_impact_analysis="ngModel" required>
+        <div class="alert alert-danger" [hidden]="risk_impact_analysis.valid || risk_impact_analysis.pristine">Risk Impact Analysis is required</div>
+      </div>
+      <div class="form-group">
+        <label for="test_plan">Test Plan</label>
+        <input type="text" class="form-control" name="test_plan" ngControl="test_plan" ngModel #test_plan="ngModel" required>
+        <div class="alert alert-danger" [hidden]="test_plan.valid || test_plan.pristine">test Plan is required</div>
+      </div>
+      <div class="form-group">
+        <label for="start_date">Start Date</label>
+        <input type="date" class="form-control" name="start_date" ngControl="start_date" ngModel #start_date="ngModel" required>
+        <div class="alert alert-danger" [hidden]="start_date.valid || start_date.pristine">Start Date is required</div>
+      </div>
+      <!-- <button type="submit" class="btn btn-default" [disabled]="!AskNowForm.valid" (click)="saveData()">Submit</button> -->
+      <button type="submit" class="btn btn-default" [disabled]="!AskNowForm.valid">Submit</button> 
+    </form>
+  </div>
+  <!-- <div *ngIf="submitted"> -->
+  <div *ngIf="submitted"> 
+    <h2>Your request is created</h2>
+    <div class="row">
+      <div class="col-md-10 pull-left">   Your change Incident Number:</div>
+      <div class="col-md-10 pull-left" ngControl="change_request">{{ postData.result.number }}</div>
+    </div>
+    <br /><br />
+    <br /><br />
+    <!--Raw output from form.value:
+    <br />
+    {{ form | json }}
+    <br /><br /> -->
+    <button class="btn btn-default" (click)="submitted=false">Back</button>
+  </div>
+</div>
